@@ -1,0 +1,41 @@
+version: '2'
+services:
+  api_php:
+    container_name: api_php
+    build: ./
+    volumes:
+      - "./:/var/www/html/"
+    depends_on:
+      - api_nginx
+      - api_mysql
+    networks:
+      - api
+
+  api_nginx:
+    container_name: api_nginx
+    image: nginx
+    ports:
+      - "8086:80"
+    volumes:
+      - "./:/var/www/html/"
+      - "./docker/containers/nginx/conf.d/:/etc/nginx/conf.d/"
+      - "./docker/containers/nginx/log/:/var/log/nginx/"
+    networks:
+      - api
+
+  api_mysql:
+    container_name: api_mysql
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: api123
+      MYSQL_DATABASE: api
+    ports:
+      - "3307:3306"
+    volumes:
+      - "./docker/containers/mysql/data/:/var/lib/mysql/"
+    command: mysqld --sql_mode=""
+    networks:
+      - api
+
+networks:
+  api:
