@@ -6,10 +6,10 @@ services:
     volumes:
       - "./:/var/www/html/"
     depends_on:
-      - api_nginx
       - api_mysql
     networks:
       - api
+    command: bash -c "php artisan migrate"
 
   api_nginx:
     container_name: api_nginx
@@ -20,6 +20,8 @@ services:
       - "./:/var/www/html/"
       - "./docker/containers/nginx/conf.d/:/etc/nginx/conf.d/"
       - "./docker/containers/nginx/log/:/var/log/nginx/"
+    depends_on:
+      - api_php
     networks:
       - api
 
@@ -30,7 +32,7 @@ services:
       MYSQL_ROOT_PASSWORD: api123
       MYSQL_DATABASE: api
     ports:
-      - "3307:3306"
+      - "3306:3306"
     volumes:
       - "./docker/containers/mysql/data/:/var/lib/mysql/"
     command: mysqld --sql_mode=""

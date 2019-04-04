@@ -2,7 +2,7 @@
 
 namespace App\Exceptions;
 
-use App\Helpers\ErrorFormatResponse;
+use App\Libraries\ErrorFormatResponse;
 use Exception;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Auth\Access\AuthorizationException;

@@ -1,7 +1,11 @@
 {
     "name": "laravel/lumen",
     "description": "The Laravel Lumen Framework.",
-    "keywords": ["framework", "laravel", "lumen"],
+    "keywords": [
+        "framework",
+        "laravel",
+        "lumen"
+    ],
     "license": "MIT",
     "type": "project",
     "require": {
@@ -15,14 +19,18 @@
         "mockery/mockery": "^1.0"
     },
     "autoload": {
-        "classmap": [],
+        "files": [
+            "app/Libraries/ErrorFormatResponse.php"
+        ],
         "psr-4": {
             "App\\": "app/",
             "Models\\": "app/Models"
         }
     },
     "autoload-dev": {
-        "classmap": []
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
     },
     "scripts": {
         "post-root-package-install": [
