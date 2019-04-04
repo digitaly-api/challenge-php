@@ -17,10 +17,12 @@ $router->group(['prefix' => 'api/v1'], function () use ($router) {
     $router->post('person', ['uses' => 'PersonController@create']);
     $router->delete('person/{id}', ['uses' => 'PersonController@delete']);
     $router->put('person/{id}', ['uses' => 'PersonController@update']);
+    $router->patch('person/{id}', ['uses' => 'PersonController@updateField']);
 
     $router->get('address',  ['uses' => 'AddressController@showAll']);
     $router->get('address/{id}', ['uses' => 'AddressController@showOne']);
     $router->post('address', ['uses' => 'AddressController@create']);
     $router->delete('address/{id}', ['uses' => 'AddressController@delete']);
     $router->put('address/{id}', ['uses' => 'AddressController@update']);
+    $router->patch('address/{id}', ['uses' => 'AddressController@updateField']);
 });
