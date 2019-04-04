@@ -1,15 +1,33 @@
-version: '2'
+version: '2.1'
 services:
+  api_mysql:
+    container_name: api_mysql
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: api123
+      MYSQL_DATABASE: apitest
+    ports:
+      - "3306:3306"
+    volumes:
+      - "./docker/containers/mysql/data:/var/lib/mysql"
+    command: mysqld --sql_mode=""
+    networks:
+      - api
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 10s
+      retries: 10
+
   api_php:
     container_name: api_php
     build: ./
     volumes:
-      - "./:/var/www/html/"
+      - ".:/var/www/html"
     depends_on:
-      - api_mysql
+      api_mysql:
+        condition: service_healthy
     networks:
       - api
-    command: bash -c "php artisan migrate"
 
   api_nginx:
     container_name: api_nginx
@@ -17,27 +35,14 @@ services:
     ports:
       - "8086:80"
     volumes:
-      - "./:/var/www/html/"
-      - "./docker/containers/nginx/conf.d/:/etc/nginx/conf.d/"
-      - "./docker/containers/nginx/log/:/var/log/nginx/"
+      - ".:/var/www/html"
+      - "./docker/containers/nginx/conf.d:/etc/nginx/conf.d"
+      - "./docker/containers/nginx/log:/var/log/nginx"
     depends_on:
       - api_php
     networks:
       - api
 
-  api_mysql:
-    container_name: api_mysql
-    image: mysql:5.7
-    environment:
-      MYSQL_ROOT_PASSWORD: api123
-      MYSQL_DATABASE: api
-    ports:
-      - "3306:3306"
-    volumes:
-      - "./docker/containers/mysql/data/:/var/lib/mysql/"
-    command: mysqld --sql_mode=""
-    networks:
-      - api
-
 networks:
   api:
+    driver: bridge

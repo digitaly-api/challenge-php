@@ -1,4 +1,5 @@
 FROM php:7.1-fpm
+WORKDIR /var/www/html
 RUN apt-get update && apt-get install -y \
         git \
         mysql-client \
@@ -40,10 +41,7 @@ RUN echo "Installing PHP extensions" \
     && echo "display_errors = On" >> /usr/local/etc/php/conf.d/errors.ini \
     && echo "memory_limit=-1" > /usr/local/etc/php/conf.d/memory_limit.ini
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
-
-WORKDIR /var/www/html
-COPY composer.json ./
-RUN bash -c "composer install"
-
 EXPOSE 9000
+
+COPY . ./
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer

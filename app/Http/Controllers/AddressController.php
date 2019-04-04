@@ -37,7 +37,7 @@ class AddressController extends Controller
 
         $data = Address::create($request->all());
 
-        return response()->json($data, 201);
+        return response()->json($data, Response::HTTP_CREATED);
     }
 
     public function update($id, Request $request): JsonResponse

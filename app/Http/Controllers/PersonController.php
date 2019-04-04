@@ -33,7 +33,7 @@ class PersonController extends Controller
 
         $data = Person::create($request->all());
 
-        return response()->json($data, 201);
+        return response()->json($data, Response::HTTP_CREATED);
     }
 
     public function update($id, Request $request): JsonResponse

@@ -2,9 +2,8 @@
 
 Documentação: 
 
-Execute o comando abaixo para subir os containers:
-
-```docker-compose up -d```
+Execute o arquivo ```build.sh``` para subir o projeto:
+```$ ./build.sh```
 
 e use a documentação acessando o link:
 
