@@ -17,7 +17,7 @@ class CreateTableAdresses extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_person');
             $table->string('postal_code', 9);
-            $table->string('address', 9);
+            $table->string('address', 50);
             $table->string('number', 10);
             $table->string('complement')->nullable();
             $table->string('state', 20);

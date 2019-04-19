@@ -45,7 +45,8 @@ class AddressController extends Controller
     		$address->save();
 
     		return response()->json(['id'         => $address->id, 
-    	                             'postalCode' => $address->postal_code,
+    	                             'idPerson'   => $address->id_person,
+                                     'postalCode' => $address->postal_code,
                                      'address'    => $address->address,
                                      'number'     => $address->number,
                                      'complement' => $address->complement,
