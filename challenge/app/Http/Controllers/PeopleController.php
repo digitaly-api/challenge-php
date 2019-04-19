@@ -68,7 +68,7 @@ class PeopleController extends Controller
     {
     	$person = People::where('id', $id)->with('addresses')->first();
 
-    	if (!$person->first())
+    	if (!$person)
     		return response()->json(['error' => 'Person not found.'], 404);
 
 		if ($person->addresses->first())
