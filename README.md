@@ -17,7 +17,7 @@ Serão considerados bônus:</br>
 
 ## DESAFIO
 
-### 1 - API de Pessoa
+### 1 - Construir uma API para gerenciar Pessoas
 	
 ###### Premissas:
 - Possibilitar cadastrar, alterar e excluir uma pessoa.
@@ -32,7 +32,7 @@ Efetuar uma requisição PUT/PATCH na API passando o id da pessoa e enviando no 
 ###### Excluir 03
 Efetuar uma requisição DELETE na API passando o id da pessoa. Se houver endereços cadastrado para essa pessoa não pode autorizar a exclusão dos dados, deve retornar uma mensagem de erro. Não retornar nada se deletado com sucesso.
 
-### 2 - API de Endereços da Pessoa
+### 2 - Construir uma API para gerenciar os Endereços da Pessoa
 	
 ###### Premissas:
 - Possibilitar cadastrar, alterar e excluir uma endereço.
@@ -47,7 +47,7 @@ Efetuar uma requisição PUT/PATCH na API passando o id do endereço e enviando 
 ###### Excluir 03
 Efetuar uma requisição DELETE na API passando o id do endereço. Não retornar nada se deletado com sucesso.
 
-### 3 - API/Proxy Consultar dados da Pessoa
+### 3 - Construir uma API/Proxy para Consultar dados da Pessoas
 
 ###### Premissas:
 - Possibilitar consultar todas pessoas/endereço e pessoa/endereço por id da pessoa (se não houver endereço cadastrado dever vir nulo) com retorno no mesmo JSON.
