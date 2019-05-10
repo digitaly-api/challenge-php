@@ -1,0 +1,6 @@
+{
+    "name": "api/gateway",
+    "require": {
+        "jenssegers/proxy": "^3.0"
+    }
+}
