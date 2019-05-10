@@ -1,0 +1,14 @@
+version: '3.5'
+services:
+  api-gateway:
+    container_name: api-gateway
+    build: ./containers/php-apache
+    volumes:
+      - "../../:/var/www/html"
+    ports:
+      - "8080:80"
+
+networks:
+  default:
+    external:
+      name: api-network

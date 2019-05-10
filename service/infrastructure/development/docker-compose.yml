@@ -1,0 +1,24 @@
+version: '3.5'
+services:
+  mysql:
+    container_name: mysql
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: teste
+      MYSQL_DATABASE: teste
+    ports:
+      - "3306:3306"
+    volumes:
+      - "./containers/mysql/data:/var/lib/mysql"
+    command: mysqld --sql_mode=""
+
+  api-service:
+    container_name: api-service
+    build: ./containers/php-apache
+    volumes:
+      - "../../:/var/www/html"
+
+networks:
+  default:
+    external:
+      name: api-network
